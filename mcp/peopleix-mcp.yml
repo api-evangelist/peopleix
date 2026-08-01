@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: searched
+status: claimed
+source: https://www.peopleix.com and https://www.peopleix.com/llms.txt
+note: >-
+  peopleIX states that each engagement leaves a persistent, queryable knowledge
+  layer that is "accessible from Claude, ChatGPT, and Copilot via MCP." This is a
+  real, first-party product capability but it is customer-scoped: no public MCP
+  server endpoint, transport, manifest, or tool list is published. No connectable
+  server URL or tool inventory could be verified, so no MCPServer pointer is wired
+  into apis.yml (recording the claim without fabricating an endpoint).
+server:
+  name: peopleix-knowledge-layer
+  transport: unknown
+  url: null
+tools: []

@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: searched
+source: https://www.peopleix.com
+host: https://www.peopleix.com
+note: >-
+  No /.well-known/ discovery documents are published. Every probed path returns
+  the site's SPA 404 handler. Recorded as an honest negative result; no WellKnown
+  or SecurityTxt pointer is emitted.
+documents:
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+- path: /security.txt
+  status: 404
+- path: /llms.txt
+  status: 200
+  note: Published llms.txt captured verbatim at llms/peopleix-llms.txt (not a /.well-known document).

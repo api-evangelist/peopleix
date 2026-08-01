@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: https://www.peopleix.com (Trust & security section) and https://www.peopleix.com/llms.txt
+note: >-
+  peopleIX publishes no OpenAPI, so cross-cutting API standards (oauth2, rfc9457,
+  json:api, pagination) cannot be derived. The standards below are the compliance /
+  data-protection posture peopleIX states publicly on its site and in its llms.txt.
+standards:
+- id: gdpr
+  conforms: true
+  evidence: "Site states 'GDPR & ISO 27001 compliant' and 'EU-resident application, AI models, and engineering'."
+- id: iso-27001
+  conforms: true
+  evidence: "Site Trust & security section and llms.txt state ISO 27001 compliance."
+- id: eu-data-residency
+  conforms: true
+  evidence: "EU-resident end-to-end (application, AI models, engineering); operated by peopleIX GmbH, Cologne, Germany."
+- id: encryption-at-rest
+  conforms: true
+  evidence: "AES-256 at rest (Trust & security section)."
+- id: encryption-in-transit
+  conforms: true
+  evidence: "TLS 1.2+ in transit (Trust & security section)."
+- id: no-model-training-on-customer-data
+  conforms: true
+  evidence: "Site states it never trains on customer data."
+- id: oauth2
+  conforms: false
+  evidence: "No public OpenAPI / documented OAuth surface."
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: "No public API spec to assert error format."

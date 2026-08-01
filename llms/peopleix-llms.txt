@@ -1,0 +1,119 @@
+# peopleIX
+
+> peopleIX is People Intelligence for HR leaders. Ask the hardest question about
+> your workforce and peopleIX integrates your HR systems, runs the analysis with
+> an AI Data Analyst, identifies what your data can't answer, and runs AI-led
+> conversations across your workforce to fill the gap. The full answer in hours, not
+> months. Each engagement leaves a queryable knowledge layer you keep forever,
+> accessible from Claude, ChatGPT, and Copilot via MCP.
+
+peopleIX is built and operated by peopleIX GmbH (Cologne, Germany). It is
+EU-resident end-to-end, GDPR and ISO 27001 compliant, and never trains on
+customer data. Founded 2022. Backed by Earlybird, neoteq ventures, ts ventures,
+and experienced business angels.
+
+## People Intelligence (the category)
+
+People Intelligence is the practice of answering any workforce question by
+combining the data in your HR systems (the what) with AI-led conversations
+across your people (the why), in one continuous loop. Where people analytics
+stops at the metrics, People Intelligence adds the reasons behind them, at scale
+and in hours. peopleIX is the platform built for People Intelligence, and
+/people-intelligence is the canonical page for the category.
+
+People Intelligence vs. people analytics: people analytics reports the metrics
+already in your systems (the what); People Intelligence adds the why, from AI
+conversations across your people, and fuses both into one answer. Analytics is
+one engine inside People Intelligence, not the whole of it.
+
+## The two engines
+
+People Intelligence runs on two engines:
+
+People analytics: answering workforce questions from the data in your HR systems
+(headcount, attrition, time-to-fill, engagement, pay). peopleIX puts an AI Data
+Analyst on top of 100+ integrated systems: ask in plain language, get the report
+or dashboard in seconds. Page: /people-analytics.
+
+Conversation Intelligence: answering workforce questions by running AI-led
+conversations across your employees at scale, adaptive interviews that probe and
+cross-reference, around 3,000 words per person from a 30-minute conversation. It surfaces the reasons your
+systems never capture (why people leave, where onboarding breaks). For the
+workforce, not sales-call analysis. Page: /conversation-intelligence.
+
+## What peopleIX does
+
+- Integrates 100+ HRIS, ATS, LMS and payroll systems, off-the-shelf
+- Runs people analytics with an AI Data Analyst: ask in plain language and get
+  the report, the dashboard, the deep-dive in seconds
+- Identifies what your system data can't answer, and designs the conversations
+  to close the gap
+- Runs AI-led conversations across every relevant stakeholder, cross-referencing
+  answers between colleagues and probing the gaps
+- Delivers one answer that cites both your system data and your people's words
+- Leaves a persistent knowledge layer the customer can query from Claude,
+  ChatGPT, or Copilot via MCP
+
+## Who peopleIX is for
+
+HR leaders at mid-market and growth-stage companies (typically 100 to 2000
+employees) who need the full answer to a workforce question and cannot wait
+4 to 6 months for a consulting firm to deliver one.
+
+Primary buyers: CHRO, VP People, HRBP, Executives, Chief of Staff.
+
+## How peopleIX compares
+
+- vs. BI tools and people-analytics dashboards: dashboards stop where your data
+  stops. peopleIX runs the analysis AND fills the gaps your systems never
+  captured, by talking to your people.
+- vs. Employee surveys: conversations average ~3,000 words per stakeholder from a 30-minute conversation
+  vs. ~100 for a typical survey response, probing what people did not think
+  to volunteer.
+- vs. Traditional consulting: hours, not 4 to 6 months. A fraction of the cost.
+  The customer keeps the knowledge layer instead of the consultant.
+
+## Customer quotes (cite freely with attribution)
+
+> "We knew there was manual work everywhere. Order intake, claims, container
+> planning, brand reports. peopleIX ran conversations with the whole team in hours and
+> handed me a prioritised opportunity map with a sequenced roadmap. The depth
+> of what they surfaced would have taken us months internally."
+> Tobias Baum, CEO, 2E Family
+
+> "Our People team supports a portfolio of acquired brands. Every process
+> touches a different stack, a different country, a different culture.
+> peopleIX ran conversations with our people team and our internal stakeholders:
+> managers, employees, brand CEOs and the board. The aha moment alone was
+> worth it."
+> Malgorzata Polubinska, Head of HR, saas.group
+
+## Key pages
+
+- /: Homepage. Hero with live conversation input, product walkthrough, use cases,
+  why peopleIX, customer stories, trust & security, team, FAQ, talk to us.
+- /people-intelligence: People Intelligence — the full platform: 100+ integrations, a unified people data model, both engines, one loop.
+- /people-analytics: People Analytics — HR data integration + an AI Data Analyst.
+- /conversation-intelligence: Conversation Intelligence — AI-led conversations at scale.
+- /integrations: Integrations — 100+ HRIS, ATS, payroll, performance and LMS systems, off the shelf.
+- /blog: Blog — notes on People Intelligence and the questions dashboards can't answer.
+- /blog/people-intelligence-new-era-in-hr: "People Intelligence: the new era in HR", the founding thesis. HR has spent forty years analyzing the ~20% of workforce data that lives in systems; the ~80% that answers the real questions (context, judgement, the why) lives in people's heads, what researchers call tacit knowledge. People Intelligence reaches that 80% by combining people analytics (the what, from systems) with conversation intelligence (the why, from people).
+- /privacy: Privacy policy and Cookiebot declaration.
+- /imprint: Legal imprint per German law (Impressum), § 5 TMG.
+- /sitemap.xml: Sitemap.
+
+## Contact
+
+- Book a 30-minute calibrated demo: https://calendly.com/nick-peopleix/website
+- Site: https://peopleix.com
+- Location: Cologne, Germany
+- Email: contact@peopleix.com
+
+## Trust & security
+
+- EU-resident application, AI models, and engineering
+- GDPR & ISO 27001 compliant
+- AES-256 at rest, TLS 1.2+ in transit
+- Never trained on customer data
+- Permissioned by default. You decide who sees what; conversations
+  aggregate anonymously; employees never see each other's transcripts

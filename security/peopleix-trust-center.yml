@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: searched
+source: https://www.peopleix.com (Trust & security section) and https://www.peopleix.com/llms.txt
+trust_center:
+  url: https://www.peopleix.com
+  note: >-
+    No dedicated trust.peopleix.com portal or downloadable audit reports were found.
+    The certifications and controls below are stated on the peopleIX homepage
+    "Trust & security" section and repeated in the published llms.txt.
+certifications:
+- name: ISO 27001
+  status: claimed-compliant
+  evidence: "'GDPR & ISO 27001 compliant' (Trust & security section, llms.txt)."
+- name: GDPR
+  status: claimed-compliant
+  evidence: "'GDPR & ISO 27001 compliant'; EU-resident end-to-end."
+controls:
+- EU-resident application, AI models, and engineering
+- AES-256 encryption at rest
+- TLS 1.2+ encryption in transit
+- Never trained on customer data
+- Permissioned by default; conversations aggregate anonymously; employees never see each other's transcripts
