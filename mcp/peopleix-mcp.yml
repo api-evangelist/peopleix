@@ -1,6 +1,7 @@
 generated: '2026-07-20'
 method: searched
-status: claimed
+status: announced
+status_raw: claimed
 source: https://www.peopleix.com and https://www.peopleix.com/llms.txt
 note: >-
   peopleIX states that each engagement leaves a persistent, queryable knowledge
