@@ -1,17 +1,84 @@
-generated: '2026-07-20'
-method: searched
-status: announced
-status_raw: claimed
-source: https://www.peopleix.com and https://www.peopleix.com/llms.txt
+generated: '2026-08-14'
+method: probed
+status: published
+source: https://app.peopleix.com/.well-known/oauth-protected-resource/mcp and a live POST to https://app.peopleix.com/mcp
 note: >-
-  peopleIX states that each engagement leaves a persistent, queryable knowledge
-  layer that is "accessible from Claude, ChatGPT, and Copilot via MCP." This is a
-  real, first-party product capability but it is customer-scoped: no public MCP
-  server endpoint, transport, manifest, or tool list is published. No connectable
-  server URL or tool inventory could be verified, so no MCPServer pointer is wired
-  into apis.yml (recording the claim without fabricating an endpoint).
+  UPGRADE over the 2026-07-20 round, which recorded the MCP capability as an
+  unverified marketing claim ("accessible from Claude, ChatGPT, and Copilot via
+  MCP") with no endpoint. The endpoint is real and was located by probing the
+  APPLICATION host rather than the marketing host: https://app.peopleix.com/mcp
+  answers a JSON-RPC POST with HTTP 401 and an RFC 9728 challenge —
+  WWW-Authenticate: Bearer error="invalid_token",
+  resource_metadata="https://app.peopleix.com/.well-known/oauth-protected-resource/mcp".
+  That metadata document names the resource "peopleIX MCP" and points at the
+  authorization server at https://app.peopleix.com. The server is therefore a real,
+  reachable, remote MCP surface that is OAuth-gated: tools/list and initialize both
+  return 401 anonymously, so the live tool inventory and inputSchemas could NOT be
+  read and are NOT recorded here. peopleIX publishes no tool list in its docs or
+  llms.txt either, so nothing is guessed — the schemas require authenticated
+  introspection with a customer account.
 server:
-  name: peopleix-knowledge-layer
-  transport: unknown
-  url: null
+  name: peopleIX MCP
+  name_source: oauth-protected-resource resource_name field
+  transport: streamable-http
+  transport_evidence: >-
+    Single POST endpoint at /mcp accepting application/json with
+    Accept: application/json, text/event-stream; no /sse or /mcp/sse route exists
+    (both 307 to the app shell).
+  url: https://app.peopleix.com/mcp
+  authorization_servers:
+  - https://app.peopleix.com
+  identity_provider: Clerk
+  identity_provider_evidence: >-
+    revocation_endpoint https://clerk.peopleix.com/oauth/token/revoke;
+    service_documentation https://clerk.com/docs/oauth/scoped-access;
+    x-clerk-auth-status / x-clerk-auth-reason response headers on the 401.
+deployment:
+  mode: remote
+  endpoint: https://app.peopleix.com/mcp
+  auth: oauth
+  verified: probed
+oauth:
+  spec: RFC 9728 (protected resource metadata) + RFC 8414 (authorization server metadata)
+  authorization_endpoint: https://app.peopleix.com/oauth/authorize
+  token_endpoint: https://app.peopleix.com/oauth/token
+  registration_endpoint: https://app.peopleix.com/oauth/register
+  dynamic_client_registration: true
+  pkce: true
+  pkce_methods:
+  - S256
+  grant_types:
+  - authorization_code
+  - refresh_token
+  scopes_supported:
+  - openid
+  - offline_access
+  resource_scopes_supported: []
+  resource_scopes_note: >-
+    The protected-resource document declares scopes_supported as an EMPTY array, so
+    the MCP resource advertises no per-tool scopes; access appears to be all-or-nothing
+    against the authenticated user's peopleIX org.
 tools: []
+tools_note: >-
+  Empty because the live tools/list is auth-gated (HTTP 401) and no public tool
+  inventory is published. NOT a claim that the server exposes zero tools.
+x-evidence:
+  fetched: '2026-08-14'
+  probes:
+  - url: https://app.peopleix.com/mcp
+    method: POST
+    body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+    http_status: 401
+    response: '{"error":"invalid_token","error_description":"No authorization provided"}'
+  - url: https://app.peopleix.com/mcp
+    method: POST
+    body: '{"jsonrpc":"2.0","id":1,"method":"initialize"}'
+    http_status: 401
+  - url: https://app.peopleix.com/.well-known/oauth-protected-resource/mcp
+    method: GET
+    http_status: 200
+    content_type: application/json
+  - url: https://app.peopleix.com/.well-known/oauth-authorization-server
+    method: GET
+    http_status: 200
+    content_type: application/json

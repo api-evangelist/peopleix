@@ -1,0 +1,50 @@
+generated: '2026-08-14'
+method: probed
+source: probes of status.peopleix.com and the common hosted-status vendors, plus a docs search of www.peopleix.com and its sitemap
+note: >-
+  peopleIX publishes no versioning policy, no deprecation policy, no SLA and no status
+  page. Recorded because the absence is itself the measurement, and because the status
+  probe hit a known false-positive trap worth documenting: peopleix.statuspage.io,
+  peopleix.instatus.com and peopleix.betteruptime.com ALL return HTTP 200, but every
+  one of them redirects to the vendor's own marketing site (atlassian.com/software/statuspage,
+  instatus.com, betterstack.com/uptime) rather than serving a peopleIX status page.
+  A naive 200 check would have credited peopleIX with a status page it does not have.
+  status.peopleix.com does not resolve at all. NO StatusPage and NO Deprecation
+  pointer is wired into apis.yml.
+versioning:
+  policy_published: false
+  scheme: null
+  note: No public API contract is published, so no version scheme is exposed.
+deprecation:
+  policy_published: false
+  sunset_header: unknown
+  deprecation_header: unknown
+  rfc8594: false
+  note: Cannot be observed — the only reachable endpoint (the MCP server) is OAuth-gated.
+sla:
+  published: false
+status_page:
+  present: false
+  url: null
+  probes:
+  - url: https://status.peopleix.com
+    status: 000
+    result: does not resolve
+  - url: https://peopleix.statuspage.io
+    status: 200
+    result: soft-200 — redirects to https://www.atlassian.com/software/statuspage (vendor marketing, not a status page)
+  - url: https://peopleix.instatus.com
+    status: 200
+    result: soft-200 — redirects to https://instatus.com/ (vendor marketing)
+  - url: https://peopleix.betteruptime.com
+    status: 200
+    result: soft-200 — redirects to https://betterstack.com/uptime (vendor marketing)
+changelog:
+  published: false
+  note: >-
+    No /changelog page (404) and none in the sitemap. The only dated content stream is
+    the blog (https://www.peopleix.com/blog), which carries a single post and serves no
+    RSS/Atom feed (all common feed paths 404).
+deprecated_operations: []
+x-evidence:
+  checked: '2026-08-14'

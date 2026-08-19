@@ -1,32 +1,84 @@
-generated: '2026-07-20'
-method: searched
-source: https://www.peopleix.com (Trust & security section) and https://www.peopleix.com/llms.txt
+generated: '2026-08-14'
+method: probed
+source: >-
+  https://trust.peopleix.com (Vanta-hosted trust center), https://www.peopleix.com/llms.txt,
+  https://www.peopleix.com (Trust & security section), and the OAuth metadata documents
+  served at https://app.peopleix.com/.well-known/
 note: >-
-  peopleIX publishes no OpenAPI, so cross-cutting API standards (oauth2, rfc9457,
-  json:api, pagination) cannot be derived. The standards below are the compliance /
-  data-protection posture peopleIX states publicly on its site and in its llms.txt.
+  Updated 2026-08-14. Two things changed since the 2026-07-20 round. First, peopleIX
+  now operates a dedicated trust center at https://trust.peopleix.com and its llms.txt
+  language moved from "GDPR & ISO 27001 compliant" to "ISO 27001 certified, GDPR
+  compliant" — a materially stronger claim, recorded as stated. Second, a real OAuth
+  surface was found on the application host, so the oauth2 entry flips from false to
+  true on machine-readable evidence rather than prose: peopleIX serves RFC 8414
+  authorization-server metadata and RFC 9728 protected-resource metadata, and enforces
+  PKCE S256. peopleIX still publishes no OpenAPI, so REST-shaped standards (json:api,
+  rfc9457, pagination, idempotency) remain unassertable.
 standards:
-- id: gdpr
+- id: oauth2
   conforms: true
-  evidence: "Site states 'GDPR & ISO 27001 compliant' and 'EU-resident application, AI models, and engineering'."
+  evidence: >-
+    https://app.peopleix.com/.well-known/oauth-authorization-server returns 200 with
+    authorization_endpoint, token_endpoint, registration_endpoint, grant_types
+    [authorization_code, refresh_token] and response_types [code].
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: true
+  evidence: "200 JSON document at /.well-known/oauth-authorization-server on app.peopleix.com."
+- id: rfc9728-oauth-protected-resource-metadata
+  conforms: true
+  evidence: >-
+    200 JSON at /.well-known/oauth-protected-resource and /.well-known/oauth-protected-resource/mcp;
+    the 401 from /mcp advertises the resource_metadata URL in its WWW-Authenticate header.
+- id: rfc7636-pkce
+  conforms: true
+  evidence: "code_challenge_methods_supported: [S256] in the authorization-server metadata."
+- id: rfc7591-dynamic-client-registration
+  conforms: true
+  evidence: "registration_endpoint https://app.peopleix.com/oauth/register advertised in the authorization-server metadata."
+- id: mcp
+  conforms: true
+  evidence: >-
+    Hosted remote MCP server at https://app.peopleix.com/mcp; JSON-RPC POST returns 401
+    with an OAuth challenge, and the protected-resource metadata names it "peopleIX MCP".
+    Tool surface is auth-gated and was not read.
+- id: oidc
+  conforms: partial
+  evidence: >-
+    The authorization server advertises the openid scope, RS256 id_token signing, and
+    OIDC claims (sub, iss, aud, exp, iat, email, name, org_id), but
+    /.well-known/openid-configuration returns 307 to the app shell rather than a
+    discovery document, so full OIDC discovery is not served.
 - id: iso-27001
   conforms: true
-  evidence: "Site Trust & security section and llms.txt state ISO 27001 compliance."
+  evidence: >-
+    "ISO 27001 certified" (llms.txt, 2026-08-14 revision, upgraded from "compliant");
+    dedicated trust center at https://trust.peopleix.com (HTTP 200, Vanta-hosted).
+- id: gdpr
+  conforms: true
+  evidence: "'GDPR compliant' plus 'EU-resident end-to-end — application, AI models, and engineering' (llms.txt, trust center meta description)."
 - id: eu-data-residency
   conforms: true
-  evidence: "EU-resident end-to-end (application, AI models, engineering); operated by peopleIX GmbH, Cologne, Germany."
+  evidence: "EU-resident end-to-end; operated by peopleIX GmbH, Cologne, Germany. Application storage observed in eu-central-1 (CSP allows https://*.s3.eu-central-1.amazonaws.com)."
 - id: encryption-at-rest
   conforms: true
-  evidence: "AES-256 at rest (Trust & security section)."
+  evidence: "AES-256 at rest (Trust & security section, trust center description)."
 - id: encryption-in-transit
   conforms: true
-  evidence: "TLS 1.2+ in transit (Trust & security section)."
+  evidence: "TLS 1.2+ in transit; observed TLS 1.3 with HSTS max-age=31536000; includeSubDomains; preload on app.peopleix.com."
 - id: no-model-training-on-customer-data
   conforms: true
-  evidence: "Site states it never trains on customer data."
-- id: oauth2
+  evidence: "'Never trained on customer data' (site, llms.txt, trust center)."
+- id: openapi
   conforms: false
-  evidence: "No public OpenAPI / documented OAuth surface."
+  evidence: "No OpenAPI/Swagger document at any probed path on www., app., or api.peopleix.com."
 - id: rfc9457-problem-details
   conforms: false
-  evidence: "No public API spec to assert error format."
+  evidence: "No public API spec; the observed 401 returns an OAuth error object, not application/problem+json."
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: "/.well-known/security.txt returns 404 on www.peopleix.com and api.peopleix.com, 307 on app.peopleix.com."
+- id: a2a
+  conforms: false
+  evidence: "/.well-known/agent-card.json and /.well-known/agent.json miss on every host (404 or 307 to an HTML shell)."
+x-evidence:
+  checked: '2026-08-14'

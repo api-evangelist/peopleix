@@ -1,0 +1,40 @@
+generated: '2026-08-14'
+method: probed
+source: https://app.peopleix.com/.well-known/oauth-authorization-server and https://app.peopleix.com/.well-known/oauth-protected-resource/mcp
+note: >-
+  peopleIX publishes no OpenAPI and no scopes/permissions reference page, so these
+  scopes come straight from the anonymously-served OAuth metadata on the application
+  host. Two facts matter here and are recorded rather than smoothed over: the
+  AUTHORIZATION SERVER advertises only the two generic identity scopes below, and the
+  PROTECTED RESOURCE (the MCP server) advertises an EMPTY scopes_supported array —
+  meaning peopleIX exposes no per-tool or per-dataset scoping to a connecting agent.
+  For a platform whose subject matter is employee-level HR data, the absence of a
+  scope surface is the finding, not an omission in our capture.
+docs: null
+authorization_server: https://app.peopleix.com
+scopes:
+- name: openid
+  description: >-
+    Standard OpenID Connect scope requesting an ID token identifying the authenticated
+    peopleIX user. Claims available: sub, iss, aud, exp, iat, email, name, org_id.
+  source: oauth-authorization-server scopes_supported
+- name: offline_access
+  description: >-
+    Requests a refresh token so an MCP client can maintain access without
+    re-prompting the user.
+  source: oauth-authorization-server scopes_supported
+resource_scopes:
+  resource: https://app.peopleix.com/mcp
+  scopes: []
+  note: >-
+    scopes_supported is an explicitly empty array in the RFC 9728 protected-resource
+    metadata. Access to the MCP tool surface therefore appears to be all-or-nothing
+    against the authenticated user's org membership (org_id claim), not scope-limited.
+scope_count: 2
+x-evidence:
+  fetched: '2026-08-14'
+  urls:
+  - url: https://app.peopleix.com/.well-known/oauth-authorization-server
+    status: 200
+  - url: https://app.peopleix.com/.well-known/oauth-protected-resource/mcp
+    status: 200

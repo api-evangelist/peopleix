@@ -8,8 +8,8 @@
 > accessible from Claude, ChatGPT, and Copilot via MCP.
 
 peopleIX is built and operated by peopleIX GmbH (Cologne, Germany). It is
-EU-resident end-to-end, GDPR and ISO 27001 compliant, and never trains on
-customer data. Founded 2022. Backed by Earlybird, neoteq ventures, ts ventures,
+EU-resident end-to-end, GDPR compliant and ISO 27001 certified, and never
+trains on customer data. Founded 2022. Backed by Earlybird, neoteq ventures, ts ventures,
 and experienced business angels.
 
 ## People Intelligence (the category)
@@ -112,7 +112,8 @@ Primary buyers: CHRO, VP People, HRBP, Executives, Chief of Staff.
 ## Trust & security
 
 - EU-resident application, AI models, and engineering
-- GDPR & ISO 27001 compliant
+- ISO 27001 certified, GDPR compliant
+- Trust Center (certificates, policies, sub-processors): https://trust.peopleix.com
 - AES-256 at rest, TLS 1.2+ in transit
 - Never trained on customer data
 - Permissioned by default. You decide who sees what; conversations

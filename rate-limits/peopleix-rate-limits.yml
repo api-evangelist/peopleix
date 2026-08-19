@@ -1,0 +1,25 @@
+generated: '2026-08-14'
+method: probed
+source: live responses from https://app.peopleix.com/mcp and https://api.peopleix.com, plus a docs search of www.peopleix.com
+note: >-
+  peopleIX documents no rate limits anywhere on its public surface — there is no
+  developer portal, no API reference, and no limits section in llms.txt. The only
+  reachable API surface is the OAuth-gated MCP endpoint, whose anonymous 401 response
+  carries no RateLimit-*, X-RateLimit-* or Retry-After headers, so no runtime
+  rate-limit signal could be observed either. An authenticated session would be
+  required to see whether limits are signalled at all. Recorded as an honest zero.
+rate_limits: []
+limit_count: 0
+headers_observed: []
+status_code_on_exhaustion: null
+observed_responses:
+- url: https://app.peopleix.com/mcp
+  method: POST
+  status: 401
+  rate_limit_headers: none
+- url: https://api.peopleix.com/
+  method: GET
+  status: 404
+  rate_limit_headers: none
+x-evidence:
+  checked: '2026-08-14'

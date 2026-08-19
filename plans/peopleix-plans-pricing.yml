@@ -1,0 +1,25 @@
+generated: '2026-08-14'
+method: searched
+source: https://www.peopleix.com/pricing (HTTP 308 -> https://www.peopleix.com/#cta) and https://www.peopleix.com/sitemap.xml
+note: >-
+  peopleIX publishes no pricing. There is no /pricing page: the path returns HTTP 308
+  redirecting to the homepage call-to-action anchor (https://www.peopleix.com/#cta),
+  which is a "book a demo" contact form. The published sitemap.xml lists 44 URLs and
+  contains no pricing, plans, or packages page in either the English or German tree.
+  The llms.txt likewise names no tiers or prices. This is an enterprise sales-gated
+  commercial model — recorded as an honest zero, not as an unchecked field.
+plans: []
+plan_count: 0
+pricing_model: sales-gated
+currency: null
+public_pricing: false
+signup_self_serve: false
+x-evidence:
+  checked: '2026-08-14'
+  urls:
+  - url: https://www.peopleix.com/pricing
+    status: 308
+    redirect_to: https://www.peopleix.com/#cta
+  - url: https://www.peopleix.com/sitemap.xml
+    status: 200
+    note: 44 URLs, no pricing page

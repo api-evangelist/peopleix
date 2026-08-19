@@ -1,0 +1,70 @@
+generated: '2026-08-14'
+method: probed
+source: observed responses from https://app.peopleix.com/mcp plus the OAuth metadata documents on the same host
+note: >-
+  peopleIX publishes no REST API and no API reference, so most cross-cutting
+  conventions cannot be derived. What IS recorded here was observed on the wire from
+  the one callable surface peopleIX ships — the OAuth-gated MCP endpoint. Everything
+  not observed is marked unknown rather than assumed; in particular NO idempotency
+  support was observed or documented, so no Idempotency pointer is wired into apis.yml.
+authentication:
+  style: oauth2-bearer
+  detail: >-
+    Authorization code flow with mandatory PKCE (S256) and dynamic client registration;
+    bearer access token presented to the MCP resource. See
+    authentication/peopleix-authentication.yml.
+  discovery: >-
+    RFC 9728 — an unauthenticated request returns 401 with a WWW-Authenticate header
+    whose resource_metadata parameter points at
+    https://app.peopleix.com/.well-known/oauth-protected-resource/mcp.
+protocol:
+  transport: JSON-RPC 2.0 over HTTP POST (MCP streamable-http)
+  endpoint: https://app.peopleix.com/mcp
+  content_type: application/json
+  accept: application/json, text/event-stream
+error_envelope:
+  observed: '{"error":"invalid_token","error_description":"No authorization provided"}'
+  shape: OAuth 2.0 error object (RFC 6749 §5.2) returned at the HTTP layer, ahead of the JSON-RPC layer
+  rfc9457: false
+  note: >-
+    Auth failures are answered with an OAuth error object rather than a JSON-RPC error
+    or an application/problem+json document. Application-level error semantics are
+    behind the auth wall and were not observed.
+idempotency:
+  supported: unknown
+  header: null
+  note: No idempotency header, key, or retention policy is documented or observable anonymously.
+pagination:
+  style: unknown
+  note: Not observable — no public REST contract, and MCP tool schemas are auth-gated.
+versioning:
+  style: unknown
+  note: The MCP endpoint is unversioned in its path (/mcp). MCP protocolVersion negotiation happens inside initialize, which is auth-gated.
+rate_limit_signaling:
+  headers_observed: []
+  note: No RateLimit-*, X-RateLimit-* or Retry-After headers on any observed response. See rate-limits/peopleix-rate-limits.yml.
+request_tracing:
+  headers_observed:
+  - x-amzn-RequestId
+  - X-Amzn-Trace-Id
+  - X-Amz-Cf-Id
+  note: >-
+    Infrastructure-level correlation IDs emitted by AWS CloudFront / API Gateway, not a
+    documented, provider-supported request-id convention.
+transport_security:
+  hsts: 'max-age=31536000; includeSubDomains; preload'
+  csp: present and strict on app.peopleix.com
+  x_content_type_options: nosniff
+  x_frame_options: SAMEORIGIN
+  cross_origin_opener_policy: same-origin-allow-popups
+  cross_origin_resource_policy: same-origin
+  referrer_policy: strict-origin-when-cross-origin
+  permissions_policy: 'geolocation=(), camera=(), microphone=(self)'
+cross_links:
+  authentication: authentication/peopleix-authentication.yml
+  scopes: scopes/peopleix-scopes.yml
+  mcp: mcp/peopleix-mcp.yml
+  rate_limits: rate-limits/peopleix-rate-limits.yml
+  lifecycle: lifecycle/peopleix-lifecycle.yml
+x-evidence:
+  checked: '2026-08-14'

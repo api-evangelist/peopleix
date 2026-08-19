@@ -1,0 +1,83 @@
+generated: '2026-08-14'
+method: probed
+source: https://app.peopleix.com/.well-known/oauth-authorization-server and https://app.peopleix.com/.well-known/oauth-protected-resource/mcp
+note: >-
+  peopleIX publishes no OpenAPI and no human-readable authentication documentation,
+  so this profile is derived entirely from the machine-readable OAuth metadata the
+  application host serves anonymously. It describes how a client authenticates to the
+  peopleIX MCP resource at https://app.peopleix.com/mcp. The identity layer is Clerk
+  (revocation endpoint on clerk.peopleix.com, service_documentation on clerk.com).
+schemes:
+- id: oauth2_authorization_code
+  type: oauth2
+  flow: authorizationCode
+  description: >-
+    OAuth 2.1-style authorization code flow with mandatory PKCE, used to obtain a
+    bearer access token for the peopleIX MCP resource. Dynamic client registration
+    (RFC 7591) is supported, which is what lets an MCP client such as Claude or
+    ChatGPT connect without a pre-provisioned client_id.
+  issuer: https://app.peopleix.com
+  authorization_endpoint: https://app.peopleix.com/oauth/authorize
+  token_endpoint: https://app.peopleix.com/oauth/token
+  registration_endpoint: https://app.peopleix.com/oauth/register
+  revocation_endpoint: https://clerk.peopleix.com/oauth/token/revoke
+  jwks_uri: https://app.peopleix.com/.well-known/jwks.json
+  jwks_note: The jwks_uri is advertised but returns 307 to the app shell for an anonymous client.
+  response_types_supported:
+  - code
+  grant_types_supported:
+  - authorization_code
+  - refresh_token
+  token_endpoint_auth_methods_supported:
+  - client_secret_basic
+  - client_secret_post
+  - none
+  code_challenge_methods_supported:
+  - S256
+  scopes_supported:
+  - openid
+  - offline_access
+  id_token_signing_alg_values_supported:
+  - RS256
+  subject_types_supported:
+  - public
+  claims_supported:
+  - sub
+  - iss
+  - aud
+  - exp
+  - iat
+  - email
+  - name
+  - org_id
+  applies_to:
+  - https://app.peopleix.com/mcp
+protected_resources:
+- resource: https://app.peopleix.com/mcp
+  resource_name: peopleIX MCP
+  authorization_servers:
+  - https://app.peopleix.com
+  token_types_supported:
+  - urn:ietf:params:oauth:token-type:access_token
+  token_introspection_endpoint: https://app.peopleix.com/oauth/token
+  authorization_data_locations_supported:
+  - header
+  - body
+  scopes_supported: []
+challenge:
+  status: 401
+  header: >-
+    WWW-Authenticate: Bearer error="invalid_token", error_description="No authorization
+    provided", resource_metadata="https://app.peopleix.com/.well-known/oauth-protected-resource/mcp"
+  spec: RFC 9728
+  note: >-
+    The 401 carries a machine-readable pointer to its own resource metadata, which is
+    the discovery path an MCP client is expected to follow. This is the strongest
+    agent-facing auth signal peopleIX publishes.
+human_auth:
+  sign_in: https://app.peopleix.com/en/auth/sign-in
+  note: End-user sign-in to the peopleIX application; distinct from the OAuth client flow above.
+gaps:
+- No published authentication documentation page for developers.
+- No API keys, no service-account credential, and no documented machine-to-machine grant (client_credentials is not in grant_types_supported).
+- The MCP resource advertises an empty scopes_supported array, so no least-privilege scoping is exposed to a connecting agent.

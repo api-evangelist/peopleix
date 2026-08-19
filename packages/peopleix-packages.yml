@@ -1,0 +1,48 @@
+generated: '2026-08-14'
+method: searched
+source: npm registry, PyPI, RubyGems, NuGet, crates.io, and the peopleIX GitHub organization (https://github.com/peopleIX)
+note: >-
+  No first-party peopleIX client library exists on any public registry. Searched npm
+  (registry search for "peopleix" returns 0 total results; peopleix, @peopleix/sdk,
+  @peopleix/mcp and peopleix-mcp all 404), PyPI (peopleix, peopleix-sdk both 404),
+  RubyGems (404), NuGet (404) and crates.io. The peopleIX GitHub organization exists
+  and is public but contains only two upstream FORKS — peopleIX/clerk-javascript
+  (fork of clerk/javascript, last pushed 2024-01-30) and peopleIX/trpc (fork of
+  trpc/trpc, last pushed 2024-12-02) — and no published library of their own. This is
+  consistent with the shape of the product: the agent surface peopleIX ships is a
+  hosted, OAuth-gated MCP server (see mcp/peopleix-mcp.yml), which an MCP client
+  reaches over HTTP with no SDK to install. No SDKs pointer is wired into apis.yml,
+  because there is no SDK.
+packages: []
+package_count: 0
+searched_registries:
+- registry: npm
+  query: peopleix
+  result: 0 results
+- registry: pypi
+  query: peopleix, peopleix-sdk
+  result: 404
+- registry: rubygems
+  query: peopleix
+  result: 404
+- registry: nuget
+  query: peopleix
+  result: 404
+- registry: crates.io
+  query: peopleix
+  result: no crate
+github_org:
+  url: https://github.com/peopleIX
+  public_repos: 2
+  first_party_libraries: 0
+  repos:
+  - name: clerk-javascript
+    fork_of: clerk/javascript
+    last_pushed: '2024-01-30'
+    official_client_library: false
+  - name: trpc
+    fork_of: trpc/trpc
+    last_pushed: '2024-12-02'
+    official_client_library: false
+x-evidence:
+  checked: '2026-08-14'

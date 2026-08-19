@@ -1,24 +1,84 @@
-generated: '2026-07-20'
-method: searched
-source: https://www.peopleix.com
-host: https://www.peopleix.com
+generated: '2026-08-14'
+method: probed
+source: live GET probes of https://www.peopleix.com, https://peopleix.com, https://app.peopleix.com and https://api.peopleix.com
 note: >-
-  No /.well-known/ discovery documents are published. Every probed path returns
-  the site's SPA 404 handler. Recorded as an honest negative result; no WellKnown
-  or SecurityTxt pointer is emitted.
-documents:
-- path: /.well-known/security.txt
-  status: 404
-- path: /.well-known/openid-configuration
-  status: 404
-- path: /.well-known/oauth-authorization-server
-  status: 404
-- path: /.well-known/api-catalog
-  status: 404
-- path: /.well-known/ai-plugin.json
-  status: 404
-- path: /security.txt
-  status: 404
-- path: /llms.txt
-  status: 200
-  note: Published llms.txt captured verbatim at llms/peopleix-llms.txt (not a /.well-known document).
+  The marketing host (www.peopleix.com) publishes no /.well-known documents — every
+  path returns the site's SPA 404 handler. The APPLICATION host (app.peopleix.com)
+  does: it serves RFC 8414 OAuth authorization-server metadata and RFC 9728 OAuth
+  protected-resource metadata, both anonymously and both real JSON documents. The
+  protected-resource document names the resource "peopleIX MCP", which is how the
+  hosted MCP server at https://app.peopleix.com/mcp was confirmed. The authorization
+  server is Clerk-backed (revocation_endpoint on clerk.peopleix.com,
+  service_documentation on clerk.com). A WellKnown pointer IS emitted for this repo
+  because at least one probed path returned a 200 carrying a real document.
+hosts:
+- host: https://app.peopleix.com
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: peopleix-oauth-authorization-server.json
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    content_type: application/json
+    file: peopleix-oauth-protected-resource.json
+  - path: /.well-known/oauth-protected-resource/mcp
+    status: 200
+    content_type: application/json
+    file: peopleix-oauth-protected-resource-mcp.json
+    note: Per-resource metadata for the MCP endpoint, advertised in the WWW-Authenticate header of a 401 from /mcp.
+  - path: /.well-known/jwks.json
+    status: 307
+    note: Redirects into the authenticated app shell; no key set served anonymously.
+  - path: /.well-known/openid-configuration
+    status: 307
+    note: Redirects to the app shell (HTML), not an OIDC discovery document.
+  - path: /.well-known/agent-card.json
+    status: 307
+  - path: /.well-known/agent.json
+    status: 307
+  - path: /.well-known/security.txt
+    status: 307
+- host: https://www.peopleix.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /llms.txt
+    status: 200
+    note: Published llms.txt captured verbatim at llms/peopleix-llms.txt (not a /.well-known document).
+- host: https://api.peopleix.com
+  note: >-
+    Host resolves and is fronted by AWS API Gateway (apigw-requestid header, JSON
+    {"message":"Not Found"} body), but every probed path returns 404 — no public
+    routes, no spec, no discovery documents.
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+x-evidence:
+  checked: '2026-08-14'
+  security_txt: false
+  agent_card: false
