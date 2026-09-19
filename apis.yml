@@ -53,11 +53,10 @@ created: '2026-07-17'
 modified: '2026-08-14'
 tags:
 - Company
-- HR
+- Human Resources
 - People Analytics
 - People Intelligence
 - Conversation Intelligence
-- Human Resources
 - Workforce Analytics
 - Artificial Intelligence
 - MCP
@@ -88,6 +87,10 @@ apis:
   humanURL: https://www.peopleix.com
   baseURL: https://app.peopleix.com/mcp
   tags:
+  - MCP
+  - People Intelligence
+  - Human Resources
+  tags_raw:
   - MCP
   - People Intelligence
   - HR
