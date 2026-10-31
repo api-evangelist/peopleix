@@ -64,6 +64,113 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Peopleix is a company surfaced as a portfolio company of earlybird and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+peopleIX is a People Intelligence platform for HR leaders, built and operated by peopleIX GmbH in Cologne, Germany (founded 2022). It integrates 100+ HR systems (HRIS, ATS, LMS, payroll) and pairs an AI Data Analyst (people analytics — the "what") with AI-led conversations across the workforce (conversation intelligence — the "why") to answer hard workforce questions in hours rather than months. Each engagement leaves a persistent, queryable knowledge layer the customer keeps. That knowledge layer is exposed to agents through a real, hosted, remote MCP server at https://app.peopleix.com/mcp — confirmed live, OAuth 2.1-gated (PKCE S256, dynamic client registration, Clerk-backed), and advertised through RFC 8414 and RFC 9728 discovery documents the application host serves anonymously. peopleIX publishes no OpenAPI, no REST developer portal, and no SDK; the MCP endpoint is the entire developer-facing surface, and its tool inventory sits behind customer authentication. The service is EU-resident end-to-end, GDPR compliant and ISO 27001 certified with a Vanta-hosted trust center at https://trust.peopleix.com, and never trains on customer data. Backed by Earlybird, neoteq ventures, ts ventures, and business angels.
 
-Backed by: earlybird
+**Areas:** Company · Human Resources · People Analytics · People Intelligence · Conversation Intelligence · Workforce Analytics · Artificial Intelligence · MCP · Germany
+
+## Peopleix on APIs.io
+
+Everything profiled for Peopleix is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/peopleix/](https://apis.io/providers/peopleix/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [peopleIX MCP](https://apis.io/apis/peopleix/peopleix-mcp/) — The hosted, remote Model Context Protocol server through which peopleIX exposes a customer's People Intelligence knowledge layer to agents such as Claude,…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [peopleIX MCP](https://apis.io/servers/peopleix/peopleix-mcp/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Peopleix Authentication](https://apis.io/security/peopleix/peopleix-authentication/)
+- [Peopleix Domain Security](https://apis.io/security/peopleix/peopleix-domain-security/)
+- [Peopleix Trust Center](https://apis.io/security/peopleix/peopleix-trust-center/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Peopleix Scopes](https://apis.io/scopes/peopleix/peopleix-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Peopleix Plans Pricing](https://apis.io/plans/peopleix/peopleix-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Peopleix Rate Limits](https://apis.io/rate-limits/peopleix/peopleix-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.peopleix.com)
+- [Blog](https://www.peopleix.com/blog)
+- [Trust centre](https://trust.peopleix.com)
+- [Privacy policy](https://www.peopleix.com/privacy)
+- [GitHub](https://github.com/peopleIX)
+
+## API Evangelist rating
+
+**Kin Score 22.2** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.7 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 32.9 |
+
+**Agent readiness 24.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+
+**Regulatory alignment 32.7** — Employment & Payroll
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/peopleix/](https://apis.io/providers/peopleix/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Peopleix: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/peopleix/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
